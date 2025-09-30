@@ -32,3 +32,10 @@ google-services.json
 
 # Android Profiling
 *.hprof
+
+# Visual Studio files
+.vs/
+bin/
+obj/
+*.user
+*.suo
