@@ -1,4 +1,6 @@
-﻿namespace personalFinacialTrack
+﻿using System.Threading.Tasks;
+
+namespace personalFinacialTrack
 {
     public partial class MainPage : ContentPage
     {
@@ -9,9 +11,10 @@
             InitializeComponent();
         }
 
-        private void OnCounterClicked(object? sender, EventArgs e)
+        private async void CreateNewGoal(object sender, EventArgs e)
         {
-           //d
+            await Navigation.PushAsync(new NewGoalPage());
         }
+
     }
 }
