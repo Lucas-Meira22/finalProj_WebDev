@@ -30,7 +30,7 @@
             <!-- Goal Name -->
             <VerticalStackLayout Spacing="5">
                 <Label Text="Goal Name" TextColor="White" FontSize="14"/>
-                <Entry Placeholder="e.g. Vacation, New Car, etc." 
+                <Entry  Placeholder="e.g. Vacation, New Car, etc." 
                        BackgroundColor="#1c1c1c" 
                        TextColor="White"
                        PlaceholderColor="Gray"/>
@@ -82,15 +82,21 @@
             <!-- Color Options -->
             <VerticalStackLayout Spacing="10">
                 <Label Text="Color" TextColor="White" FontSize="14"/>
+
                 <HorizontalStackLayout Spacing="15">
-                    <Frame WidthRequest="40" HeightRequest="40" CornerRadius="20" BackgroundColor="Purple"/>
-                    <Frame WidthRequest="40" HeightRequest="40" CornerRadius="20" BackgroundColor="Orange"/>
-                    <Frame WidthRequest="40" HeightRequest="40" CornerRadius="20" BackgroundColor="DodgerBlue"/>
-                    <Frame WidthRequest="40" HeightRequest="40" CornerRadius="20" BackgroundColor="LimeGreen"/>
-                    <Frame WidthRequest="40" HeightRequest="40" CornerRadius="20" BackgroundColor="Red"/>
-                    <Frame WidthRequest="40" HeightRequest="40" CornerRadius="20" BorderColor="Gray"/>
+                    <Button BackgroundColor="Purple" WidthRequest="40" HeightRequest="40"
+                CornerRadius="20" Clicked="OnColorSelected" CommandParameter="Purple"/>
+                    <Button BackgroundColor="Orange" WidthRequest="40" HeightRequest="40"
+                CornerRadius="20" Clicked="OnColorSelected" CommandParameter="Orange"/>
+                    <Button BackgroundColor="DodgerBlue" WidthRequest="40" HeightRequest="40"
+                CornerRadius="20" Clicked="OnColorSelected" CommandParameter="DodgerBlue"/>
+                    <Button BackgroundColor="LimeGreen" WidthRequest="40" HeightRequest="40"
+                CornerRadius="20" Clicked="OnColorSelected" CommandParameter="LimeGreen"/>
+                    <Button BackgroundColor="Red" WidthRequest="40" HeightRequest="40"
+                CornerRadius="20" Clicked="OnColorSelected" CommandParameter="Red"/>
                 </HorizontalStackLayout>
             </VerticalStackLayout>
+
 
             <!-- Buttons -->
             <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
@@ -98,9 +104,11 @@
                         BackgroundColor="#333"
                         TextColor="White"
                         CornerRadius="20"
+                        Clicked="OnCancelClicked"
                         WidthRequest="120"/>
                 <Button Text="Save" 
                         BackgroundColor="Purple"
+                        Clicked="OnSaveClicked"
                         TextColor="White"
                         CornerRadius="20"
                         WidthRequest="120"/>
