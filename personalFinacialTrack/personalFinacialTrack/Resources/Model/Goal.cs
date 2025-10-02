@@ -12,7 +12,7 @@ namespace personalFinacialTrack.Resources.Model
         {
             public string Name { get; set; }
             public decimal Amount { get; set; } // target amount
-            public string Currency { get; set; }
+            public Currency Currency { get; set; }
             public DateTime? Deadline { get; set; }
             public string Note { get; set; }
             public string Color { get; set; } // store as hex string like "#FF0000"

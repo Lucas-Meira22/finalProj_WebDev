@@ -30,7 +30,8 @@
             <!-- Goal Name -->
             <VerticalStackLayout Spacing="5">
                 <Label Text="Goal Name" TextColor="White" FontSize="14"/>
-                <Entry  Placeholder="e.g. Vacation, New Car, etc." 
+                <Entry  x:Name="EntryName"
+                    Placeholder="e.g. Vacation, New Car, etc." 
                        BackgroundColor="#1c1c1c" 
                        TextColor="White"
                        PlaceholderColor="Gray"/>
@@ -39,7 +40,8 @@
             <!-- Goal Amount -->
             <VerticalStackLayout Spacing="5">
                 <Label Text="Goal Amount" TextColor="White" FontSize="14"/>
-                <Entry Text="10000" 
+                <Entry x:Name="EntryAmount"
+                    Text="10000" 
                        Keyboard="Numeric"
                        BackgroundColor="#1c1c1c" 
                        TextColor="White"
@@ -49,30 +51,29 @@
             <!-- Currency -->
             <VerticalStackLayout Spacing="5">
                 <Label Text="Currency" TextColor="White" FontSize="14"/>
-                <Picker Title="Select currency"
-                        BackgroundColor="#1c1c1c"
-                        TextColor="White"
-                        TitleColor="Gray">
-                    <Picker.Items>
-                        <x:String>USD</x:String>
-                        <x:String>EUR</x:String>
-                        <x:String>INR</x:String>
-                        <x:String>GBP</x:String>
-                    </Picker.Items>
-                </Picker>
+                <Picker x:Name="EntryCurrency"
+                    Title="Select currency"
+            BackgroundColor="#1c1c1c"
+            TextColor="White"
+            TitleColor="Gray"
+            ItemsSource="{Binding Currencies}"
+            SelectedItem="{Binding SelectedCurrency, Mode=TwoWay}"/>
             </VerticalStackLayout>
+
 
             <!-- Deadline -->
             <VerticalStackLayout Spacing="5">
                 <Label Text="Deadline (Optional)" TextColor="White" FontSize="14"/>
-                <DatePicker TextColor="White"
+                <DatePicker x:Name="EntryDeadline"
+                    TextColor="White"
                             BackgroundColor="#1c1c1c"/>
             </VerticalStackLayout>
 
             <!-- Note -->
             <VerticalStackLayout Spacing="5">
                 <Label Text="Note (Optional)" TextColor="White" FontSize="14"/>
-                <Editor Placeholder="Add your note..."
+                <Editor x:Name="EntryNote"
+                    Placeholder="Add your note..."
                         HeightRequest="80"
                         BackgroundColor="#1c1c1c"
                         TextColor="White"

@@ -48,7 +48,7 @@
         </Frame>
 
         <!-- ✅ MAIN CONTENT -->
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" RowDefinitions="*,Auto">
 
             <!-- Empty State -->
             <StackLayout x:Name="EmptyState"
@@ -147,21 +147,24 @@
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
+               
             </CollectionView>
+            
+            <!--Floating add btn-->
+            <Button  IsVisible="{Binding HasGoals}"
+                Text="+"
+                WidthRequest="60"
+                HeightRequest="60"
+                CornerRadius="30"
+                BackgroundColor="#5C3EE8"
+                TextColor="White"
+                FontAttributes="Bold"
+                AbsoluteLayout.LayoutBounds="0.95,0.95,60,60"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                HorizontalOptions="End"
+                VerticalOptions="End"
+                Clicked="CreateNewGoal"/>
+
         </Grid>
-
-
-        <Button Text="+"
-            WidthRequest="60"
-            HeightRequest="60"
-            CornerRadius="30"
-            BackgroundColor="#5C3EE8"
-            TextColor="White"
-            FontAttributes="Bold"
-            AbsoluteLayout.LayoutBounds="0.95,0.95,60,60"
-            AbsoluteLayout.LayoutFlags="PositionProportional"
-            Clicked="CreateNewGoal"
-            Shadow="10"/>
-
     </Grid>
 </ContentPage>

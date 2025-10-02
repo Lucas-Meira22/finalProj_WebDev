@@ -8,6 +8,7 @@ public partial class NewGoalPage : ContentPage
     public NewGoalPage()
     {
         InitializeComponent();
+        BindingContext = new NewGoalViewModel();
     }
 
     private async void OnCancelClicked(object sender, EventArgs e)
@@ -26,18 +27,24 @@ public partial class NewGoalPage : ContentPage
         //TODO NAME OF FIELDS
         var goal = new Goal
         {
-            //Name = GoalName.text,
-            //Amount = decimal.TryParse(GoalAmountEntry.Text, out var amount) ? amount : 0,
-            //Currency = CurrencyPicker.SelectedItem?.ToString(),
-            //Deadline = DeadlinePicker.Date, // can be optional, handle null if needed
-            //Note = GoalNoteEditor.Text,
-            //Color = _selectedColor
+            Name = EntryName.Text,
+            Amount = decimal.TryParse(EntryAmount.Text, out var amt) ? amt : 0,
+            Currency = (Currency)EntryCurrency.SelectedItem,
+            Deadline = EntryDeadline.Date,
+            Note = EntryNote.Text,
+            Color = _selectedColor
         };
+
+
+
+        //Pop up a confirmation dialog
         await DisplayAlert("Goal Saved",
             $"Name: {goal.Name}\nAmount: {goal.Amount}\nCurrency: {goal.Currency}\nDeadline: {goal.Deadline}\nNote: {goal.Note}\nColor: {goal.Color}",
             "OK");
 
         // TODO: Save to database, API, or pass back to previous page
+        
+        //Sends back to previous page
         await Navigation.PopAsync();
     }
 }
