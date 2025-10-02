@@ -3,7 +3,7 @@
              x:Class="personalFinacialTrack.MainPage"
              BackgroundColor="#121212">
 
-    <Grid RowDefinitions="Auto,*" Padding="20">
+    <Grid RowDefinitions="Auto,*,Auto" Padding="20">
 
         <!-- ✅ HEADER -->
         <Frame Grid.Row="0"
@@ -115,11 +115,11 @@
 
                                     <!-- Title + Goal Amount -->
                                     <Grid ColumnDefinitions="*,Auto">
-                                        <Label Text="{Binding Title}"
+                                        <Label Text="{Binding Name}"
                                                TextColor="White"
                                                FontSize="16"
                                                VerticalOptions="Center"/>
-                                        <Label Text="{Binding GoalAmount, StringFormat='${0:N0}'}"
+                                        <Label Text="{Binding Amount, StringFormat='${0:N0}'}"
                                                TextColor="White"
                                                FontSize="16"
                                                Grid.Column="1"
@@ -137,7 +137,7 @@
                                         <Label Text="{Binding CurrentAmount, StringFormat='${0:N0}'}"
                                                TextColor="LightGray"
                                                FontSize="14"/>
-                                        <Label Text="{Binding RemainingAmount, StringFormat='${0:N0}'}"
+                                        <Label Text="{Binding Remaining, StringFormat='${0:N0}'}"
                                                TextColor="LightGray"
                                                FontSize="14"
                                                Grid.Column="1"/>
@@ -149,5 +149,19 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </Grid>
+
+
+        <Button Text="+"
+            WidthRequest="60"
+            HeightRequest="60"
+            CornerRadius="30"
+            BackgroundColor="#5C3EE8"
+            TextColor="White"
+            FontAttributes="Bold"
+            AbsoluteLayout.LayoutBounds="0.95,0.95,60,60"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            Clicked="CreateNewGoal"
+            Shadow="10"/>
+
     </Grid>
 </ContentPage>
