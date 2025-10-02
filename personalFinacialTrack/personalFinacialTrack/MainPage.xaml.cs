@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using personalFinacialTrack.Resources.Model;
+using System.Threading.Tasks;
 
 namespace personalFinacialTrack
 {
@@ -9,6 +10,8 @@ namespace personalFinacialTrack
         public MainPage()
         {
             InitializeComponent();
+
+            BindingContext = new MainViewModel();
         }
 
         private async void CreateNewGoal(object sender, EventArgs e)

@@ -1,4 +1,5 @@
 using personalFinacialTrack.Resources.Model;
+using personalFinacialTrack.Resources.Model.personalFinacialTrack.Resources.Model;
 
 namespace personalFinacialTrack;
 public partial class NewGoalPage : ContentPage

@@ -3,27 +3,28 @@
              x:Class="personalFinacialTrack.MainPage"
              BackgroundColor="#121212">
 
-    <Grid>
+    <Grid RowDefinitions="Auto,*" Padding="20">
 
-        <!-- Main Grid with padding -->
-        <Grid RowDefinitions="Auto, *" Padding="20">
-
-            <!-- Header -->
-            <Grid RowDefinitions="Auto" ColumnDefinitions="Auto, *, Auto" Margin="0,20,0,40">
+        <!-- ✅ HEADER -->
+        <Frame Grid.Row="0"
+               Padding="10"
+               HasShadow="False"
+               BackgroundColor="Transparent"
+               BorderColor="Gray">
+            <Grid ColumnDefinitions="Auto,*,Auto">
 
                 <!-- Profile Picture -->
                 <Image Source="profile_img.jpg"
                        WidthRequest="40"
                        HeightRequest="40"
                        Aspect="AspectFill"
-                       VerticalOptions="Center"
-                       HorizontalOptions="Start">
+                       VerticalOptions="Center">
                     <Image.Clip>
                         <EllipseGeometry Center="20,20" RadiusX="20" RadiusY="20"/>
                     </Image.Clip>
                 </Image>
 
-                <!-- App Title -->
+                <!-- Title -->
                 <Label Text="Trezo"
                        FontSize="24"
                        FontAttributes="Bold"
@@ -44,17 +45,23 @@
                            FontAttributes="Bold"/>
                 </Frame>
             </Grid>
+        </Frame>
 
-            <!-- Main Content -->
-            <StackLayout Grid.Row="1" Spacing="30" VerticalOptions="Center" HorizontalOptions="Center">
+        <!-- ✅ MAIN CONTENT -->
+        <Grid Grid.Row="1">
 
-                <!-- Target Icon -->
+            <!-- Empty State -->
+            <StackLayout x:Name="EmptyState"
+                         IsVisible="{Binding IsEmpty}"
+                         Spacing="30"
+                         VerticalOptions="Center"
+                         HorizontalOptions="Center">
+
                 <Image Source="target_icon.png"
                        WidthRequest="120"
                        HeightRequest="120"
                        HorizontalOptions="Center"/>
 
-                <!-- Title -->
                 <Label Text="Ready to start saving?"
                        FontSize="22"
                        FontAttributes="Bold"
@@ -62,14 +69,12 @@
                        HorizontalOptions="Center"
                        HorizontalTextAlignment="Center"/>
 
-                <!-- Subtitle -->
                 <Label Text="You haven't set any savings goals yet."
                        FontSize="16"
                        TextColor="#B0B0B0"
                        HorizontalOptions="Center"
                        HorizontalTextAlignment="Center"/>
 
-                <!-- Button -->
                 <Button Text="+ Create Your First Goal"
                         BackgroundColor="#5C3EE8"
                         TextColor="White"
@@ -79,17 +84,70 @@
                         Clicked="CreateNewGoal"
                         HorizontalOptions="Center"/>
             </StackLayout>
-        </Grid>
 
-        <!-- Floating Plus Button -->
-        <Button Text="+"
-                BackgroundColor="#5C3EE8"
-                TextColor="White"
-                CornerRadius="30"
-                WidthRequest="60"
-                HeightRequest="60"
-                HorizontalOptions="End"
-                VerticalOptions="End"
-                Margin="20"/>
+            <!-- Goals List -->
+            <CollectionView x:Name="GoalsList"
+                            ItemsSource="{Binding Goals}"
+                            IsVisible="{Binding HasGoals}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BackgroundColor="#222"
+                               Padding="10"
+                               CornerRadius="12"
+                               Margin="0,8"
+                               HasShadow="False">
+                            <Grid ColumnDefinitions="Auto,*"
+                                  ColumnSpacing="10">
+
+                                <!-- Image -->
+                                <Frame WidthRequest="60"
+                                       HeightRequest="60"
+                                       CornerRadius="30"
+                                       Padding="0"
+                                       HasShadow="False"
+                                       VerticalOptions="Center">
+                                    <Image Source="{Binding Image}"
+                                           Aspect="AspectFill"/>
+                                </Frame>
+
+                                <!-- Right side -->
+                                <VerticalStackLayout Grid.Column="1" Spacing="6">
+
+                                    <!-- Title + Goal Amount -->
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <Label Text="{Binding Title}"
+                                               TextColor="White"
+                                               FontSize="16"
+                                               VerticalOptions="Center"/>
+                                        <Label Text="{Binding GoalAmount, StringFormat='${0:N0}'}"
+                                               TextColor="White"
+                                               FontSize="16"
+                                               Grid.Column="1"
+                                               VerticalOptions="Center"/>
+                                    </Grid>
+
+                                    <!-- Progress Bar -->
+                                    <ProgressBar Progress="{Binding Progress}" 
+                                                 ProgressColor="#7A5CFF"
+                                                 BackgroundColor="#444"
+                                                 HeightRequest="6"/>
+
+                                    <!-- Current + Remaining -->
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <Label Text="{Binding CurrentAmount, StringFormat='${0:N0}'}"
+                                               TextColor="LightGray"
+                                               FontSize="14"/>
+                                        <Label Text="{Binding RemainingAmount, StringFormat='${0:N0}'}"
+                                               TextColor="LightGray"
+                                               FontSize="14"
+                                               Grid.Column="1"/>
+                                    </Grid>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
     </Grid>
 </ContentPage>
