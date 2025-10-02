@@ -128,7 +128,7 @@
 
                                     <!-- Progress Bar -->
                                     <ProgressBar Progress="{Binding Progress}" 
-                                                 ProgressColor="#7A5CFF"
+                                                 ProgressColor="{Binding Color}"
                                                  BackgroundColor="#444"
                                                  HeightRequest="6"/>
 
