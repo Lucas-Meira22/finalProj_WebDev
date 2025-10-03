@@ -1,3 +1,4 @@
+﻿
 using personalFinacialTrack.Resources.Model;
 using personalFinacialTrack.Resources.Model.personalFinacialTrack.Resources.Model;
 
@@ -24,7 +25,6 @@ public partial class NewGoalPage : ContentPage
     }
     private async void OnSaveClicked(object sender, EventArgs e)
     {
-        //TODO NAME OF FIELDS
         var goal = new Goal
         {
             Name = EntryName.Text,
@@ -32,19 +32,28 @@ public partial class NewGoalPage : ContentPage
             Currency = (Currency)EntryCurrency.SelectedItem,
             Deadline = EntryDeadline.Date,
             Note = EntryNote.Text,
-            Color = _selectedColor
+            Color = _selectedColor,
+            CurrentAmount = 0
         };
 
+        try
+        {
+            if (BindingContext is GoalsViewModel vm)
+            {
+                await vm.AddGoalAsync(goal); // ✅ Call ViewModel method
+            }
 
+            await DisplayAlert("Goal Saved",
+                $"Name: {goal.Name}\nAmount: {goal.Amount}\nCurrency: {goal.Currency}\nDeadline: {goal.Deadline}\nNote: {goal.Note}\nColor: {goal.Color}",
+                "OK");
 
-        //Pop up a confirmation dialog
-        await DisplayAlert("Goal Saved",
-            $"Name: {goal.Name}\nAmount: {goal.Amount}\nCurrency: {goal.Currency}\nDeadline: {goal.Deadline}\nNote: {goal.Note}\nColor: {goal.Color}",
-            "OK");
-
-        // TODO: Save to database, API, or pass back to previous page
-        
-        //Sends back to previous page
-        await Navigation.PopAsync();
+            await Navigation.PopAsync();
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", $"Could not save goal: {ex.Message}", "OK");
+        }
     }
+
+
 }

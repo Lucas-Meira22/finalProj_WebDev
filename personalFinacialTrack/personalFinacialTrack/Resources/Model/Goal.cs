@@ -10,6 +10,7 @@ namespace personalFinacialTrack.Resources.Model
     {
         public class Goal
         {
+            public int GoalId { get; set; } // Primary key for database
             public string Name { get; set; }
             public decimal Amount { get; set; } // target amount
             public Currency Currency { get; set; }

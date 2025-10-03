@@ -86,70 +86,59 @@
             </StackLayout>
 
             <!-- Goals List -->
-            <CollectionView x:Name="GoalsList"
-                            ItemsSource="{Binding Goals}"
-                            IsVisible="{Binding HasGoals}">
+            <CollectionView ItemsSource="{Binding Goals}"
+                SelectedItem="{Binding SelectedGoal}"
+                IsVisible="{Binding Goals.Count, Converter={StaticResource ZeroToBoolConverter}}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame BackgroundColor="#222"
-                               Padding="10"
-                               CornerRadius="12"
-                               Margin="0,8"
-                               HasShadow="False">
+                   Padding="10"
+                   CornerRadius="12"
+                   Margin="0,8"
+                   HasShadow="False">
                             <Grid ColumnDefinitions="Auto,*"
-                                  ColumnSpacing="10">
+                      ColumnSpacing="10">
 
-                                <!-- Image -->
-                                <Frame WidthRequest="60"
-                                       HeightRequest="60"
-                                       CornerRadius="30"
-                                       Padding="0"
-                                       HasShadow="False"
-                                       VerticalOptions="Center">
-                                    <Image Source="{Binding Image}"
-                                           Aspect="AspectFill"/>
-                                </Frame>
+                                <!-- Color Circle -->
+                                <Frame WidthRequest="20"
+                           HeightRequest="20"
+                           CornerRadius="10"
+                           BackgroundColor="{Binding Color}"
+                           VerticalOptions="Center" />
 
                                 <!-- Right side -->
                                 <VerticalStackLayout Grid.Column="1" Spacing="6">
-
-                                    <!-- Title + Goal Amount -->
                                     <Grid ColumnDefinitions="*,Auto">
-                                        <Label Text="{Binding Name}"
-                                               TextColor="White"
-                                               FontSize="16"
-                                               VerticalOptions="Center"/>
+                                        <Label Text="{Binding Name}" 
+                                   TextColor="White"
+                                   FontSize="16"/>
                                         <Label Text="{Binding Amount, StringFormat='${0:N0}'}"
-                                               TextColor="White"
-                                               FontSize="16"
-                                               Grid.Column="1"
-                                               VerticalOptions="Center"/>
+                                   TextColor="White"
+                                   FontSize="16"
+                                   Grid.Column="1"/>
                                     </Grid>
 
-                                    <!-- Progress Bar -->
-                                    <ProgressBar Progress="{Binding Progress}" 
-                                                 ProgressColor="{Binding Color}"
-                                                 BackgroundColor="#444"
-                                                 HeightRequest="6"/>
+                                    <ProgressBar Progress="{Binding Progress}"
+                                     ProgressColor="{Binding Color}"
+                                     BackgroundColor="#444"
+                                     HeightRequest="6"/>
 
-                                    <!-- Current + Remaining -->
                                     <Grid ColumnDefinitions="*,Auto">
                                         <Label Text="{Binding CurrentAmount, StringFormat='${0:N0}'}"
-                                               TextColor="LightGray"
-                                               FontSize="14"/>
+                                   TextColor="LightGray"
+                                   FontSize="14"/>
                                         <Label Text="{Binding Remaining, StringFormat='${0:N0}'}"
-                                               TextColor="LightGray"
-                                               FontSize="14"
-                                               Grid.Column="1"/>
+                                   TextColor="LightGray"
+                                   FontSize="14"
+                                   Grid.Column="1"/>
                                     </Grid>
                                 </VerticalStackLayout>
                             </Grid>
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
-               
             </CollectionView>
-            
+
             <!--Floating add btn-->
             <Button  IsVisible="{Binding HasGoals}"
                 Text="+"

@@ -6,17 +6,23 @@ namespace personalFinacialTrack
     public partial class MainPage : ContentPage
     {
         int count = 0;
+        private GoalsViewModel _viewModel;
 
         public MainPage()
         {
             InitializeComponent();
-
-            BindingContext = new MainViewModel();
+            _viewModel = new GoalsViewModel();
+            BindingContext = _viewModel;
         }
 
         private async void CreateNewGoal(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new NewGoalPage());
+        }
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            await _viewModel.LoadGoalsAsync();
         }
 
     }
