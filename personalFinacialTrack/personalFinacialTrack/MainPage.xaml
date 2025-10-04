@@ -52,7 +52,7 @@
 
             <!-- Empty State -->
             <StackLayout x:Name="EmptyState"
-                         IsVisible="{Binding IsEmpty}"
+                         IsVisible="False"
                          Spacing="30"
                          VerticalOptions="Center"
                          HorizontalOptions="Center">
