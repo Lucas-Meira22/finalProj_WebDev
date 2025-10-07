@@ -1,0 +1,130 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="personalFinacialTrack.GoalDetailsPage"
+             BackgroundColor="#111">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <!-- Title -->
+            <Label Text="{Binding Name}"
+                   FontSize="22"
+                   TextColor="White"
+                   HorizontalOptions="Center" />
+
+            <!-- Tabs -->
+            <Grid ColumnDefinitions="*,*"
+                  BackgroundColor="#1E1E1E"
+                  Padding="4"
+                  >
+                <Button Text="Goal"
+                        Grid.Column="0"
+                        BackgroundColor="#4C4CFF"
+                        TextColor="White"
+                        CornerRadius="8"/>
+                <Button Text="Records"
+                        Grid.Column="1"
+                        BackgroundColor="Transparent"
+                        TextColor="LightGray"
+                        CornerRadius="8"/>
+            </Grid>
+
+            <!-- Circular Progress -->
+            <Grid HorizontalOptions="Center" VerticalOptions="Center">
+                <GraphicsView HeightRequest="200"
+                              WidthRequest="200"
+                              Drawable="{Binding ProgressDrawable}" />
+
+                <Label Text="{Binding Progress, StringFormat='{0:P0}'}"
+                       FontSize="28"
+                       TextColor="White"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" />
+            </Grid>
+
+            <!-- Savings Info -->
+            <Grid RowDefinitions="Auto,Auto"
+                  ColumnDefinitions="*,*,*"
+                  Padding="10">
+                <Label Text="{Binding CurrentAmount, StringFormat='${0:N0}'}"
+                       Grid.Column="0"
+                       TextColor="White"
+                       HorizontalOptions="Center"/>
+                <Label Text="{Binding Remaining, StringFormat='${0:N0}'}"
+                       Grid.Column="1"
+                       TextColor="White"
+                       HorizontalOptions="Center"/>
+                <Label Text="{Binding Amount, StringFormat='${0:N0}'}"
+                       Grid.Column="2"
+                       TextColor="White"
+                       HorizontalOptions="Center"/>
+                <Label Text="Saved" Grid.Row="1" Grid.Column="0"
+                       TextColor="LightGray"
+                       HorizontalOptions="Center"/>
+                <Label Text="Remaining" Grid.Row="1" Grid.Column="1"
+                       TextColor="LightGray"
+                       HorizontalOptions="Center"/>
+                <Label Text="Goal" Grid.Row="1" Grid.Column="2"
+                       TextColor="LightGray"
+                       HorizontalOptions="Center"/>
+            </Grid>
+
+            <!-- Deadline -->
+            <Label Text="{Binding Deadline, StringFormat='Deadline: {0:dd MMM yyyy}'}"
+                   TextColor="LightGray"
+                   FontSize="14"
+                   HorizontalOptions="Center" />
+
+            <!-- Daily / Weekly / Monthly -->
+            <Grid RowDefinitions="Auto,Auto"
+                  ColumnDefinitions="*,*,*"
+                  Padding="10">
+                <Label Text="{Binding DailySavings, StringFormat='${0:N2}'}"
+                       Grid.Column="0"
+                       TextColor="White"
+                       HorizontalOptions="Center"/>
+                <Label Text="{Binding WeeklySavings, StringFormat='${0:N2}'}"
+                       Grid.Column="1"
+                       TextColor="White"
+                       HorizontalOptions="Center"/>
+                <Label Text="{Binding MonthlySavings, StringFormat='${0:N2}'}"
+                       Grid.Column="2"
+                       TextColor="White"
+                       HorizontalOptions="Center"/>
+                <Label Text="Daily" Grid.Row="1" Grid.Column="0"
+                       TextColor="LightGray"
+                       HorizontalOptions="Center"/>
+                <Label Text="Weekly" Grid.Row="1" Grid.Column="1"
+                       TextColor="LightGray"
+                       HorizontalOptions="Center"/>
+                <Label Text="Monthly" Grid.Row="1" Grid.Column="2"
+                       TextColor="LightGray"
+                       HorizontalOptions="Center"/>
+            </Grid>
+
+            <!-- Note -->
+            <Label Text="Note"
+                   FontSize="14"
+                   TextColor="Gray"/>
+            <Label Text="{Binding Note}"
+                   FontSize="16"
+                   TextColor="White"/>
+
+            <!-- Buttons -->
+            <Grid ColumnDefinitions="*,*"
+                  ColumnSpacing="20"
+                  Margin="0,20,0,0">
+                <Button Text="Withdraw"
+                        Grid.Column="0"
+                        BackgroundColor="#333"
+                        TextColor="White"
+                        CornerRadius="12"/>
+                <Button Text="Add Savings"
+                        Grid.Column="1"
+                        BackgroundColor="#4C4CFF"
+                        TextColor="White"
+                        CornerRadius="12"/>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -29,7 +29,9 @@ public partial class NewGoalPage : ContentPage
         {
             Name = EntryName.Text,
             Amount = decimal.TryParse(EntryAmount.Text, out var amt) ? amt : 0,
-            Currency = (Currency)EntryCurrency.SelectedItem,
+            Currency = Enum.TryParse<Currency>(EntryCurrency.SelectedItem?.ToString(), out var c)
+            ? c
+            : Currency.USD,
             Deadline = EntryDeadline.Date,
             Note = EntryNote.Text,
             Color = _selectedColor,
@@ -46,6 +48,7 @@ public partial class NewGoalPage : ContentPage
             await DisplayAlert("Goal Saved",
                 $"Name: {goal.Name}\nAmount: {goal.Amount}\nCurrency: {goal.Currency}\nDeadline: {goal.Deadline}\nNote: {goal.Note}\nColor: {goal.Color}",
                 "OK");
+
 
             await Navigation.PopAsync();
         }

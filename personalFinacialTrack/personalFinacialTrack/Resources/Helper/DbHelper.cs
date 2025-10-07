@@ -29,23 +29,26 @@ namespace personalFinacialTrack.Resources.Model
         // CREATE
         public async Task CreateGoalAsync(Goal goal)
         {
-            string query = @"INSERT INTO Goal
-                    (Name, Amount, CurrentAmount, Currency, Deadline, Note, Color) 
-                    VALUES (@Name, @Amount, @CurrentAmount, @Currency, @Deadline, @Note, @Color);";
+            string query = @"
+            INSERT INTO Goal
+            (Name, Amount, CurrentAmount, Currency, Deadline, Note, Color)
+            VALUES (@Name, @Amount, @CurrentAmount, @Currency, @Deadline, @Note, @Color);";
 
             using var conn = new MySqlConnection(connectionString);
             await conn.OpenAsync();
 
-            using var cmd = new MySqlCommand(query, conn);
+            using var cmd = new MySqlCommand(query,conn);
             cmd.Parameters.AddWithValue("@Name", goal.Name);
             cmd.Parameters.AddWithValue("@Amount", goal.Amount);
             cmd.Parameters.AddWithValue("@CurrentAmount", goal.CurrentAmount);
-            cmd.Parameters.AddWithValue("@Currency", goal.Currency.ToString()); // ✅ FIX
-            cmd.Parameters.AddWithValue("@Deadline", (object?)goal.Deadline ?? DBNull.Value);
-            cmd.Parameters.AddWithValue("@Note", goal.Note ?? "");
-            cmd.Parameters.AddWithValue("@Color", goal.Color ?? "");
+            cmd.Parameters.AddWithValue("@Currency", goal.Currency);
+            cmd.Parameters.AddWithValue("@Deadline", goal.Deadline.HasValue ? (object)goal.Deadline.Value : DBNull.Value);
+            cmd.Parameters.AddWithValue("@Note", goal.Note);
+            cmd.Parameters.AddWithValue("@Color", goal.Color);
 
-            await cmd.ExecuteNonQueryAsync();
+            int rows = await cmd.ExecuteNonQueryAsync();
+            Debug.WriteLine($"INSERT rows: {rows} | Name={goal.Name}, Amount={goal.Amount}, Currency={goal.Currency}, Deadline={goal.Deadline}, Note={goal.Note}, Color={goal.Color}");
+
         }
 
         // SELECT

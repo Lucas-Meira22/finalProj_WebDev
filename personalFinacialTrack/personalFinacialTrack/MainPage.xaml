@@ -87,8 +87,8 @@
 
             <!-- Goals List -->
             <CollectionView ItemsSource="{Binding Goals}"
-                SelectedItem="{Binding SelectedGoal}"
-                IsVisible="{Binding Goals.Count, Converter={StaticResource ZeroToBoolConverter}}">
+                SelectionMode="None">
+                <!-- Disable built-in selection -->
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame BackgroundColor="#222"
@@ -96,8 +96,13 @@
                    CornerRadius="12"
                    Margin="0,8"
                    HasShadow="False">
-                            <Grid ColumnDefinitions="Auto,*"
-                      ColumnSpacing="10">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer 
+                        Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.GoalTappedCommand}"
+                        CommandParameter="{Binding .}" />
+                            </Frame.GestureRecognizers>
+
+                            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
 
                                 <!-- Color Circle -->
                                 <Frame WidthRequest="20"
@@ -138,6 +143,7 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+
 
             <!--Floating add btn-->
             <Button  IsVisible="{Binding HasGoals}"
