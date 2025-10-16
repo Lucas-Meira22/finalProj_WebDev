@@ -119,12 +119,14 @@
                         BackgroundColor="#333"
                         TextColor="White"
                         CornerRadius="12"/>
+                 <!--DO THE FUNCTION-->
                 <Button Text="Add Savings"
                         Grid.Column="1"
                         BackgroundColor="#4C4CFF"
                         TextColor="White"
                         CornerRadius="12"/>
-                <Button Text="Delete Goal"
+                <!--DO THE FUNCTION-->
+                <Button Text="Delete Goal"  
                         Grid.Column="2"
                         BackgroundColor="#CF1C00"
                         TextColor="White"
