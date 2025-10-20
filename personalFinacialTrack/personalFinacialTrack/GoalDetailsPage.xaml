@@ -15,18 +15,18 @@
             <!-- Tabs -->
             <Grid ColumnDefinitions="*,*"
                   BackgroundColor="#1E1E1E"
-                  Padding="4"
-                  >
+                  Padding="4">
                 <Button Text="Goal"
                         Grid.Column="0"
                         BackgroundColor="#4C4CFF"
                         TextColor="White"
-                        CornerRadius="8"/>
+                        CornerRadius="8" />
                 <Button Text="Records"
                         Grid.Column="1"
                         BackgroundColor="Transparent"
                         TextColor="LightGray"
-                        CornerRadius="8"/>
+                        CornerRadius="8"
+                        Clicked="OnViewRecordsClicked" />
             </Grid>
 
             <!-- Circular Progress -->
@@ -118,20 +118,22 @@
                         Grid.Column="0"
                         BackgroundColor="#333"
                         TextColor="White"
-                        CornerRadius="12"/>
-                 <!--DO THE FUNCTION-->
+                        CornerRadius="12"
+                        Clicked="OnWithdrawClicked" />
                 <Button Text="Add Savings"
                         Grid.Column="1"
                         BackgroundColor="#4C4CFF"
                         TextColor="White"
-                        CornerRadius="12"/>
-                <!--DO THE FUNCTION-->
-                <Button Text="Delete Goal"  
+                        CornerRadius="12"
+                        Clicked="OnAddSavingsClicked" />
+                <Button Text="Delete Goal"
                         Grid.Column="2"
                         BackgroundColor="#CF1C00"
                         TextColor="White"
-                        CornerRadius="12"/>
+                        CornerRadius="12"
+                        Clicked="OnDeleteGoalClicked" />
             </Grid>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
+

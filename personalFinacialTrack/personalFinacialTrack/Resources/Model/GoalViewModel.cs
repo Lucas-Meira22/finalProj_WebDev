@@ -3,7 +3,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Microsoft.Maui.Controls;
 using personalFinacialTrack.Resources.Model;
-using personalFinacialTrack.Resources.Model.personalFinacialTrack.Resources.Model;
+using System.Linq;
+using personalFinacialTrack;
 
 public class GoalsViewModel : BindableObject
 {
@@ -22,15 +23,28 @@ public class GoalsViewModel : BindableObject
         }
     }
 
+    private bool _hasGoals;
+    public bool HasGoals
+    {
+        get => _hasGoals;
+        set
+        {
+            _hasGoals = value;
+            OnPropertyChanged();
+        }
+    }
+
     public ICommand LoadGoalsCommand { get; }
     public ICommand AddGoalCommand { get; }
     public ICommand DeleteGoalCommand { get; }
+    public ICommand GoalTappedCommand { get; }
 
     public GoalsViewModel()
     {
         LoadGoalsCommand = new Command(async () => await LoadGoalsAsync());
         AddGoalCommand = new Command<Goal>(async (goal) => await AddGoalAsync(goal));
         DeleteGoalCommand = new Command(async () => await DeleteGoalAsync());
+        GoalTappedCommand = new Command<Goal>(async (goal) => await OnGoalTapped(goal));
     }
 
     public async Task LoadGoalsAsync()
@@ -39,11 +53,12 @@ public class GoalsViewModel : BindableObject
         var goalsFromDb = await _db.GetGoalsAsync();
         foreach (var goal in goalsFromDb)
             Goals.Add(goal);
+
+        HasGoals = Goals.Any();
     }
 
     public async Task AddGoalAsync(Goal newGoal)
     {
-       
         await _db.CreateGoalAsync(newGoal);
         await LoadGoalsAsync();
     }
@@ -55,7 +70,16 @@ public class GoalsViewModel : BindableObject
             await _db.DeleteGoalAsync(SelectedGoal.GoalId);
             Goals.Remove(SelectedGoal);
             SelectedGoal = null;
+            HasGoals = Goals.Any();
         }
     }
 
+    private async Task OnGoalTapped(Goal goal)
+    {
+        if (goal == null) return;
+
+        await Application.Current.MainPage.Navigation.PushAsync(new GoalDetailsPage(goal));
+    }
 }
+
+

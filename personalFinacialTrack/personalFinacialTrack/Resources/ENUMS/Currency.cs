@@ -3,5 +3,6 @@
     USD,
     EUR,
     CAD,
-    GBP
+    GBP,
+    MEX
 }

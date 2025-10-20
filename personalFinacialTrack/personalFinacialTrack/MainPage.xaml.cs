@@ -1,5 +1,4 @@
 ﻿using personalFinacialTrack.Resources.Model;
-using personalFinacialTrack.Resources.Model.personalFinacialTrack.Resources.Model;
 using System.Threading.Tasks;
 
 namespace personalFinacialTrack
@@ -30,8 +29,8 @@ namespace personalFinacialTrack
             if (goal == null) return;
 
             // Navigate to details page
-            await Application.Current.MainPage.Navigation.PushAsync(new GoalDetailsPage { BindingContext = goal});
-            
+            await Application.Current.MainPage.Navigation.PushAsync(new GoalDetailsPage(goal));
+
         }
     }
 }

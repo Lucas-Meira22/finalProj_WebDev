@@ -33,7 +33,7 @@
                        TextColor="White"
                        Grid.Column="1"/>
 
-                <!-- PRO Badge -->
+                <!-- Badge -->
                 <Frame BackgroundColor="#5C3EE8"
                        Padding="10,2"
                        CornerRadius="20"
@@ -47,7 +47,7 @@
             </Grid>
         </Frame>
 
-        <!-- ✅ MAIN CONTENT -->
+        <!-- MAIN CONTENT -->
         <Grid Grid.Row="1" RowDefinitions="*,Auto">
 
             <!-- Empty State -->
@@ -88,7 +88,6 @@
             <!-- Goals List -->
             <CollectionView ItemsSource="{Binding Goals}"
                 SelectionMode="None">
-                <!-- Disable built-in selection -->
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame BackgroundColor="#222"
@@ -104,14 +103,12 @@
 
                             <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
 
-                                <!-- Color Circle -->
                                 <Frame WidthRequest="20"
-                           HeightRequest="20"
-                           CornerRadius="10"
-                           BackgroundColor="{Binding Color}"
-                           VerticalOptions="Center" />
+                                       HeightRequest="20"
+                                       CornerRadius="10"
+                                       BackgroundColor="{Binding Color}"
+                                       VerticalOptions="Center" />
 
-                                <!-- Right side -->
                                 <VerticalStackLayout Grid.Column="1" Spacing="6">
                                     <Grid ColumnDefinitions="*,Auto">
                                         <Label Text="{Binding Name}" 
